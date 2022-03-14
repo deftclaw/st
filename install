@@ -1,0 +1,43 @@
+#!/usr/bin/bash
+
+log=/tmp/make_log
+default_mode() {
+  clear
+  printf "${Gre}Default mode selected:\n${Cya}[-]Cleaning the build directory\n${Gre}[ ]Building\n[ ]Installing\n[ ]Cleaning again\n${NC}"h
+  $(make -j$(( $(lscpu|grep '^CPU\(s\)'|awk '{print $NF}') + 1 )) clean &>> $log)
+  $(sudo make -j$(( $(lscpu|grep '^CPU\(s\)'|awk '{print $NF}') + 1 )) uninstall &>> $log)
+  sleep 0.2
+  clear 
+  printf "${Gre}Default mode selected:\n[X]Cleaning the build directory\n${Cya}[-]Building\n${Gre}[ ]Installing\n[ ]Cleaning again\n${NC}"
+  $(make -j$(( $(lscpu|grep '^CPU\(s\)'|awk '{print $NF}') + 1 ))&>> $log)
+  clear
+  printf "${Gre}Default mode selected:\n[X]Cleaning the build directory\n[X]Building\n${Cya}[-]Installing\n${Gre}[ ]Cleaning again\n${NC}"
+  $(sudo make -j$(( $(lscpu|grep '^CPU\(s\)'|awk '{print $NF}') + 1 )) install &>> $log)
+  sleep 0.2
+  clear
+  printf "${Gre}Default mode selected:\n[X]Cleaning the build directory\n[X]Building\n[X]Installing\n${Cya}[-]Cleaning again\n${NC}"
+  $(make -j$(( $(lscpu|grep '^CPU\(s\)'|awk '{print $NF}') + 1 )) clean &>> $log)
+  sleep 0.2
+  clear
+  printf "${Gre}Default mode selected:\n[X]Cleaning the build directory\n[X]Building\n[X]Installing\n[X]Cleaning again\n${NC}"
+  echo  "Done!"|figlet -f smslant|lolcat -a -d 1
+}
+
+case $1 in
+  -m | -mk | --make )
+    echo -e "${Yel}Make mode selected: compiling executable and nothing more.${NC}"
+    $(make -j$(( $(lscpu|grep '^CPU\(s\)'|awk '{print $NF}') + 1 ))&>> $log);;
+  -i | -in | --install )
+    echo -e "${Cya}Install mode selected: installing compiled executable for all users${NC}"
+    $(sudo make -j$(( $(lscpu|grep '^CPU\(s\)'|awk '{print $NF}') + 1 )) install &>> $log);;
+  -c | -cl | --clean )
+    $(make -j$(( $(lscpu|grep '^CPU\(s\)'|awk '{print $NF}') + 1 )) clean &>> $log)
+    echo -e "${bgBlu}Clean mode selected: cleaning build-files from build directory${NC}";;
+  -u | -un | --uninstall )
+    echo -e "${Red}Uninstall mode selected: removing the executable from the system, other users will be affected!${NC}"
+    $(sudo make -j$(( $(lscpu|grep '^CPU\(s\)'|awk '{print $NF}') + 1 )) uninstall &>> $log);;
+  * ) 
+    printf "${Gre}Default mode selected:\n - Cleaning the build directory\n - Building\n - Installing\n - Cleaning again\n${NC}"
+    default_mode
+    ;;
+esac
