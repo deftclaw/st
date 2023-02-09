@@ -20,7 +20,7 @@ default_mode() {
   sleep 0.2
   clear
   printf "${Gre}Default mode selected:\n[X]Cleaning the build directory\n[X]Building\n[X]Installing\n[X]Cleaning again\n${NC}"
-  echo  "Done!"|figlet -f smslant|lolcat -a -d 1
+  echo  "Done!"|figlet -f smslant|lolcat
 }
 
 case $1 in
