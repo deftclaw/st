@@ -5,8 +5,9 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = { "Victor Mono:pixelsize=18:antialias=true:autohint=true:style=Bold Italic" };
-static char *font2[] = { "Symbols NFM:pixelsize=18:antialias=true:autohint=true" };
+static char *font = { "Iosevka Term:pixelsize=18:antialias=true:autohint=true:style=Bold Italic" };
+static char *font2[] = { "Symbols NFM:pixelsize=15:antialias=true:autohint=true" };
+static char *font3[] = { "IPAPMincho:pixelsize=15:antialias=true:autohint=true" };
 static int borderpx = 2;
 
 /*
