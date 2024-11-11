@@ -5,10 +5,11 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = { "Iosevka Term:pixelsize=18:antialias=true:autohint=true:style=Bold Italic" };
+static char *font = { "Iosevka Term Slab:pixelsize=18:antialias=true:autohint=true:style=Bold Italic" };
 static char *font2[] = { "Symbols NFM:pixelsize=15:antialias=true:autohint=true" };
 static char *font3[] = { "Source Han Serif:pixelsize=15:antialias=true:autohint=true" };
 static char *font4[] = { "dgjhw:pixelsize=15:antialias=true:autohint=true" };
+static char *font5[] = { "OpenMoji Color:pixelsize=15:antialias=true:autohint=true" };
 static int borderpx = 2;
 
 /*

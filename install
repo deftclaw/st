@@ -1,7 +1,23 @@
 #!/usr/bin/bash
 
 log=/tmp/make_log
+
+install_fonts() {
+  if [[ ! `fc-list | grep 'OpenMoji-color-colr1_svg.ttf\|Iosevka.ttf\|kanji.otf\|Symbols.ttf'|wc|awk '{print $1}'` -eq 4 ]] 
+  then
+    tar -xf fonts.tbz2
+    pushd fonts
+      ./install
+    popd
+
+    rm -rf fonts/
+  fi
+}
+
 default_mode() {
+  clear
+  printf "[-] Installing Fonts\n"
+  install_fonts
   clear
   printf "${Gre}Default mode selected:\n${Cya}[-]Cleaning the build directory\n${Gre}[ ]Building\n[ ]Installing\n[ ]Cleaning again\n${NC}"h
   $(make -j$(( $(lscpu|grep '^CPU\(s\)'|awk '{print $NF}') + 1 )) clean &>> $log)
