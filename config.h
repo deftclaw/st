@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = { "Iosevka Term:pixelsize=18:antialias=true:autohint=true:style=Bold Italic" };
+static char *font = { "Iosevka Term Slab:pixelsize=21:antialias=true:autohint=true:style=Bold Italic" };
 static char *font2[] = { "Symbols NFM:pixelsize=15:antialias=true:autohint=true" };
 static char *font3[] = { "Source Han Serif:pixelsize=15:antialias=true:autohint=true" };
 static char *font4[] = { "dgjhw:pixelsize=15:antialias=true:autohint=true" };
@@ -133,7 +133,7 @@ static const char *colorname[] = {
 	"#ebdbb2",
 	[255] = 0,
 	/* more colors can be added after 255 to use with DefaultXX */
-	"#add8e6", /* 256 -> cursor */
+	"#1a0820", /* 256 -> cursor */
 	"#555555", /* 257 -> rev cursor*/
 	"#282828", /* 258 -> bg */
 	"#ebdbb2", /* 259 -> fg */

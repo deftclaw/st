@@ -29,7 +29,8 @@ case $1 in
     $(make -j$(( $(lscpu|grep '^CPU\(s\)'|awk '{print $NF}') + 1 ))&>> $log);;
   -i | -in | --install )
     echo -e "${Cya}Install mode selected: installing compiled executable for all users${NC}"
-    $(sudo make -j$(( $(lscpu|grep '^CPU\(s\)'|awk '{print $NF}') + 1 )) install &>> $log);;
+    $(sudo make -j$(( $(lscpu|grep '^CPU\(s\)'|awk '{print $NF}') + 1 )) install &>> $log)
+    $(sudo tar -xf fonts.txz -c /usr/share/fonts);;
   -c | -cl | --clean )
     $(make -j$(( $(lscpu|grep '^CPU\(s\)'|awk '{print $NF}') + 1 )) clean &>> $log)
     echo -e "${bgBlu}Clean mode selected: cleaning build-files from build directory${NC}";;
